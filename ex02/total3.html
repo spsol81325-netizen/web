@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>semantic</title>
+    <style>
+        *{margin: 0;padding: 0;box-sizing: border-box;}
+        #wrap{width: 500px; margin: 50px auto;}
+        #wrap h1{text-align: center;}
+        .box{
+            width: 100%;
+            border: 5px solid #000;
+            padding: 20px;
+        }
+        header{
+             border: 5px solid #000;
+             margin-bottom: 20px;
+             padding: 20px;
+             text-align: center;
+        }
+        nav{
+            border: 5px solid #000;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .nav1{width:25% }
+        .nav2{width: 48%}
+        nav>div{
+            background: cyan;
+            padding: 20px;
+        }
+        article{
+            border: 5px solid #000;
+            margin-bottom: 20px;
+            padding: 20px;
+            text-align: center;
+        }
+        article p{
+            text-align: left;
+        }
+        article figure{
+            border: 5px solid #000;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        article figure figcaption{
+            background: pink;
+            padding: 20px;
+        }
+        footer{
+            border: 5px solid #000;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        footer>div{
+            background: red;
+            padding: 20px;
+            text-align: center;
+        }
+        .footer1{width: 25%}
+        .footer2{width: 48%}
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <h1>Semantic</h1>
+        <div class="box">
+            <header>header
+                <nav>
+                    <div class="nav1">&nbsp;</div>
+                    <div class="nav2">nav</div>
+                    <div class="nav1">&nbsp;</div>
+                </nav>
+            </header>
+            <article>article
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur <br>
+                    Aspernatur eaque error ipsum  <br>
+                    similique incidunt ducimus optio neque voluptas
+                </p>
+                <figure>
+                    <figcaption>figure</figcaption>
+                </figure>
+            </article>
+            <footer>
+               
+                    <div class="footer1">&nbsp;</div>
+                    <div class="footer2">footer</div>
+                    <div class="footer1">&nbsp;</div>
+               
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

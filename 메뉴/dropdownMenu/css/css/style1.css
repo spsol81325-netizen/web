@@ -1,0 +1,37 @@
+a{text-decoration: none; color: #000}
+
+nav{
+    background: rgb(0, 153, 255);
+    padding: 20px 0;
+}
+nav>ul{
+    display: flex;
+    position: relative;
+    
+}
+nav>ul>li{position: relative;}
+nav>ul>li>a{
+    padding: 19px 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #fff;
+}
+nav>ul>li>ul{display: none; position: absolute;
+    background: yellow;
+    top: 36px;
+    width: 100%;
+}
+nav>ul:hover>li>ul{display: block; text-align: center;}
+nav>ul>li>ul>li{
+    transition: .5s;
+}
+nav>ul>li>ul>li:hover{
+    background: red;
+}
+nav>ul>li>ul>li>a{
+    display: block;
+    padding: 20px;
+}
+nav>ul>li>ul>li:hover>a{
+    color: #fff
+}

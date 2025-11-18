@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <title>이미지, 색상, 글자 투명도 조정하기</title>
+      <meta charset="UTF-8" />
+      <style type="text/css">
+         *{margin: 0;padding: 0;}
+         body{
+            background: #ccc url(./images/bg_gray.png) no-repeat;
+         }
+		 /*배경화면 주는 방법: 반복을 주면 옆에 붙는다. 따라서 no-repeat이 필요.
+		  body에서 설정하는 것이 아니라 style에서 body를 불러와서 작성해야 한다.*/
+         
+		 div{
+            background: url(./images/circle.png) no-repeat;
+            width: 530px;
+            height: 424px;
+            opacity: .8;
+            margin: 0 auto;
+            padding-top: 150px;
+			padding-left: 20px;
+         }
+		   /*그림을 넣을 때는 이미지가 css에 들어와 있어야 한다.*/
+         p{
+           
+	     }
+         .textBox{
+            width: 25%;
+			background-color:
+			hsla(180,100%,100%,.7);
+			padding: 20px;
+			margin: 0 auto;
+			border-radius: 20px;
+		 }
+		 /*boder-radius 20px 하나만 주면 전체가 둥글게, 
+		 2개를 쓰면 대각선으로 둥글게, 1개만을 둥글게 하려면 
+		 (20px, 0, 0, 0)으로 4개를 다 설정해주어야 한다*/
+         .people{
+			font: 3em "arial Black";
+			padding-top: 130px;
+			color: aqua;
+		 }
+		 /*         */
+      </style>
+   </head>
+
+   <body>
+
+      <div>
+         <p class="textBox">
+               Freedom is not worth having
+               if it does not include the freedom to make mistakes.            
+         </p>
+         <p class="people">- Mahatma Gandhi - <p>
+      </div>
+   </body>
+</html>
+
+
+

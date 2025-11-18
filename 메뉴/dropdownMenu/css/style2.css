@@ -1,0 +1,17 @@
+a{
+    text-decoration: none; color: black;
+}
+nav{
+    background: rgb( rgb(67, 67, 204));
+    padding: 20px 0;
+}
+nav>ul{
+    display: flex;
+    position: relative;
+}
+nav>ul>li{position: ;
+
+}
+nav>ul>li>ul{}
+nav>ul>li>ul>a{}
+
