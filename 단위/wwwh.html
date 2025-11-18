@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>vw / % 그리고 vh / % 비교</title>
+<style>
+  :root{font-family:Arial,Helvetica,sans-serif}
+
+  body{margin:20px;line-height:1.4;color:#222}
+
+  .section{margin-bottom:30px;padding:12px;border:1px solid #ddd;border-radius:6px;background:#fafafa}
+  .title{font-weight:700;margin-bottom:10px}
+
+  /* 부모 컨테이너는 뷰포트보다 좁게 설정 */
+  .container{width:70%;max-width:900px;padding:12px;border:1px dashed #bbb;background:#fff}
+
+  .row{display:flex;gap:12px;align-items:flex-start;margin-top:10px}
+  .panel{flex:1;padding:10px;border-radius:6px;color:#fff;min-height:80px;position:relative;overflow:hidden}
+  .label{position:absolute;right:8px;top:8px;font-size:13px;opacity:.9}
+
+  .vw {background:linear-gradient(135deg,#3b82f6 0%,#60a5fa 100%);width:50vw}
+  .pct {background:linear-gradient(135deg,#10b981 0%,#34d399 100%);width:50%}
+  .vh {background:linear-gradient(135deg,#ef4444 0%,#f97316 100%);height:50vh}
+  .pct-h-parent{height:300px} /* 높이가 명시된 부모 */
+  .pct-h {background:linear-gradient(135deg,#7c3aed 0%,#a78bfa 100%);height:50%}
+
+  /* 보조 스타일: 박스 안 텍스트 */
+  .panel p{margin:0;padding:6px 0 0 0;font-weight:600;letter-spacing:0.2px}
+  .note{font-size:13px;color:#555;margin-top:8px}
+</style>
+</head>
+<body>
+
+<div class="section">
+  <div class="title">너비 비교: 50vw vs 50%</div>
+  <div>아래 부모 컨테이너(.container)는 화면 너비의 70%로 고정(상대값). 그 안에서 50vw는 뷰포트의 절반이 되고, 50%는 부모 너비의 절반이 됩니다.</div>
+
+  <div class="container">
+    <div class="row">
+      <div class="panel vw">
+        <span class="label">width: 50vw</span>
+        <p>이 박스는 뷰포트 너비 50%</p>
+      </div>
+      <div class="panel pct">
+        <span class="label">width: 50%</span>
+        <p>이 박스는 부모(.container) 너비의 50%</p>
+      </div>
+    </div>
+    <div class="note">창 크기를 바꿔보면 두 박스 너비가 다르게 변합니다.</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="title">높이 비교: 50vh vs 50%</div>
+  <div>vh는 뷰포트 높이 기준. % 높이는 부모에 명시적 높이가 있을 때만 부모 높이의 비율이 됩니다. 아래 두 케이스를 보세요.</div>
+
+  <h4 style="margin-top:12px;margin-bottom:6px">A) 부모에 높이 있음 (height:300px)</h4>
+  <div class="container pct-h-parent">
+    <div class="row">
+      <div class="panel vh" style="flex:0 0 200px;min-height:auto">
+        <span class="label">height: 50vh</span>
+        <p>뷰포트 높이의 50% (viewport 기준)</p>
+      </div>
+      <div class="panel pct-h" style="flex:1">
+        <span class="label">height: 50%</span>
+        <p>부모(300px) 높이의 50% = 150px</p>
+      </div>
+    </div>
+  </div>
+
+  <h4 style="margin-top:12px;margin-bottom:6px">B) 부모에 높이 없음 (auto)</h4>
+  <div class="container" style="min-height:120px">
+    <div class="row">
+      <div class="panel vh" style="flex:0 0 200px;min-height:auto">
+        <span class="label">height: 50vh</span>
+        <p>뷰포트 높이의 50%</p>
+      </div>
+      <div class="panel" style="flex:1;background:#64748b">
+        <span class="label">height: 50%</span>
+        <p>부모에 높이가 없으면 %는 부모의 명시적 높이를 참조할 수 없어 정상적으로 작동하지 않음 (콘텐츠 기준)</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">창 높이를 조절해 50vh가 어떻게 변경되는지 확인하고, 부모 높이를 바꾸면 % 높이가 어떻게 달라지는지도 확인하세요.</div>
+</div>
+
+</body>
+</html>
