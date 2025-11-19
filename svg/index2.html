@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>원 svg 에니메이션</title>
+    <style>
+        .cir{width: 150px; height:150px;}
+        .cir circle{
+            fill:none;
+            stroke-width: 10px;
+            stroke-linecap: round;
+            animation: loader 4s infinite ease-in-out;
+            transform-origin: 50% 50%;
+        }
+        @keyframes loader {
+            0%{transform: rotate(0deg);}
+            50%{transform: rotate(360deg);}
+            100%{transform: rotate(0deg);}
+        }
+        .cir circle:nth-child(1){
+            stroke:aqua; 
+            stroke-dasharray: 30;
+            animation-delay: 0.4s;
+        }
+        .cir circle:nth-child(2){
+            stroke:rgb(241, 128, 35); 
+            stroke-dasharray: 150;
+            animation-delay: -0.4s;
+        }
+        .cir circle:nth-child(3){
+            stroke:rgb(111, 55, 240); 
+            stroke-dasharray: 200;
+            animation-delay: -0.8s;
+        }
+        .cir circle:nth-child(4){
+            stroke:rgb(59, 192, 130); 
+            stroke-dasharray: 240;
+            animation-delay: -.01s;
+        }
+
+    </style>
+</head>
+<body>
+    <svg class="cir">
+        <circle cx="75" cy="75" r="10"/>
+        <circle cx="75" cy="75" r="20"/>
+        <circle cx="75" cy="75" r="40"/>
+        <circle cx="75" cy="75" r="50"/>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>애니메이션 장미 (SVG)</title>
+<style>
+  html,body { height:100%; margin:0; display:flex; align-items:center; justify-content:center; background:#111; }
+  svg { width:80vmin; height:80vmin; display:block; }
+
+  /* 기본 선(그리기) 설정 */
+  .draw { fill: none; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; stroke-opacity:1; /* dash props set by JS */ 
+         animation: drawAnim 8s linear infinite; }
+
+  /* 색 채우기 - 초기 투명, 나중에 나타남 */
+  .petal-shape { fill: rgba(255,230,80,0); stroke:none; animation: petalFill 8s linear infinite; }
+  .leaf-shape  { fill: rgba(80,200,100,0); stroke:none; animation: leafFill 8s linear infinite; }
+  .stem { fill:none; stroke:#3a7d3a; stroke-width:4; stroke-linecap:round; stroke-linejoin:round; animation: drawAnim 8s linear infinite; }
+
+  /* 색상 for outlines */
+  .outline-petal { stroke:#ffcc33; }
+  .outline-leaf  { stroke:#62b36f; }
+  .outline-stem  { stroke:#3a7d3a; }
+
+  /* draw animation: stroke-dashoffset goes len -> 0 -> len to redraw */
+  @keyframes drawAnim {
+    0%   { stroke-dashoffset: var(--len); }
+    40%  { stroke-dashoffset: 0; }
+    70%  { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: var(--len); }
+  }
+
+  /* petals fill in after outline drawn, then fade before loop ends */
+  @keyframes petalFill {
+    0%   { fill: rgba(255,230,80,0); }
+    45%  { fill: rgba(255,230,80,0); }
+    55%  { fill: rgba(255,230,80,0.95); } /* appear */
+    85%  { fill: rgba(255,230,80,0.95); }
+    100% { fill: rgba(255,230,80,0); } /* disappear for loop */
+  }
+
+  @keyframes leafFill {
+    0%   { fill: rgba(80,200,100,0); }
+    45%  { fill: rgba(80,200,100,0); }
+    55%  { fill: rgba(80,200,100,0.95); }
+    85%  { fill: rgba(80,200,100,0.95); }
+    100% { fill: rgba(80,200,100,0); }
+  }
+
+  /* make stroke slightly thinner on petals so fill stands out */
+  .outline-petal { stroke-width:2.5; }
+  /* smoother visuals */
+  svg { filter: drop-shadow(0 6px 16px rgba(0,0,0,0.6)); }
+</style>
+</head>
+<body>
+  <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!-- stem -->
+    <path id="stem" class="draw outline-stem stem" d="M250 360 C248 320 230 260 260 220 C280 190 300 190 310 210
+      C320 230 310 250 300 265 C290 280 295 300 300 320" />
+
+    <!-- left leaf shape (filled later) -->
+    <path id="leaf-left-outline" class="draw outline-leaf" d="M230 290 C200 270 165 260 150 240 C170 260 200 285 230 290 Z" />
+    <path id="leaf-left-fill" class="leaf-shape" d="M230 290 C200 270 165 260 150 240 C170 260 200 285 230 290 Z" />
+
+    <!-- right leaf -->
+    <path id="leaf-right-outline" class="draw outline-leaf" d="M315 300 C350 280 385 270 405 250 C385 276 350 300 315 300 Z" />
+    <path id="leaf-right-fill" class="leaf-shape" d="M315 300 C350 280 385 270 405 250 C385 276 350 300 315 300 Z" />
+
+    <!-- outer petals outlines -->
+    <path id="petal1" class="draw outline-petal" d="M250 200 C210 170 160 170 150 220 C142 250 170 280 200 290 C220 295 240 290 255 275" />
+    <path id="petal2" class="draw outline-petal" d="M250 200 C290 170 340 170 350 220 C358 250 330 280 300 290 C280 295 260 290 245 275" />
+
+    <!-- inner petals -->
+    <path id="petal3" class="draw outline-petal" d="M250 210 C240 200 230 195 220 205 C215 212 225 225 240 230 C250 235 260 230 265 220" />
+    <path id="petal4" class="draw outline-petal" d="M255 220 C255 215 260 210 268 215 C275 220 272 230 265 235 C256 241 248 235 246 227" />
+
+    <!-- filled petal shapes (these appear after outline animation) -->
+    <path id="petal-fill-outer" class="petal-shape" d="M150 220 C160 180 210 160 250 200 C290 160 340 180 350 220 C360 260 320 300 250 290 C180 300 140 260 150 220 Z" />
+    <path id="petal-fill-inner" class="petal-shape" d="M240 210 C230 200 220 200 215 210 C210 220 220 235 240 235 C260 235 270 220 265 210 C260 200 255 210 240 210 Z" />
+  </svg>
+
+<script>
+  // 정확한 길이를 계산해서 CSS 변수에 넣어 그리기 애니메이션에서 사용
+  (function(){
+    const draws = document.querySelectorAll('.draw');
+    draws.forEach(p => {
+      const len = Math.ceil(p.getTotalLength());
+      // set both dasharray and custom property for keyframes use
+      p.style.strokeDasharray = len;
+      p.style.strokeDashoffset = len;
+      p.style.setProperty('--len', len);
+    });
+
+    // ensure filled shapes are behind outlines visually (optional)
+    // no further JS needed; animations controlled by CSS keyframes above
+  })();
+</script>
+</body>
+</html>
